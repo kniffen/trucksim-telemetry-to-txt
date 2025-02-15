@@ -7,9 +7,10 @@ export function formatTemplate(jsonData: JsonData, template: string): string {
   const placeholders = template.match(/{[^}]+}/g) || [];
 
   for (const placeholder of placeholders) {
-    const path = placeholder.slice(1, -1);
-    const value = getValueFromPath(jsonData, path);
-    output = output.replace(placeholder, String(value));
+    const [path, formatter] = placeholder.slice(1, -1).split('|');
+    const value = getValueFromPath(jsonData, path?.trim() || '');
+    const formattedValue = formatter ? applyFormatter(value, formatter.trim()) : value;
+    output = output.replace(placeholder, formattedValue);
   }
 
   return output;
@@ -30,4 +31,14 @@ function getValueFromPath(data: JsonData, path: string): string {
   }
 
   return value;
+}
+
+function applyFormatter(value: string, formatter: string): string {
+  try {
+    const func = new Function('value', `return (${formatter})(value);`);
+    return func(value);
+  } catch (error) {
+    console.error(`Error applying formatter: ${formatter}`, error);
+    return value;
+  }
 }

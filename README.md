@@ -5,8 +5,8 @@ A simple tool to get telemetry data from ETS2 and ATS written to a text file
 Download and install the 󠀠󠀠󠀠󠀠[scs-sdk-plugin](https://github.com/RenCloud/scs-sdk-plugin) by [RenCloud](https://github.com/RenCloud) in your ETS2 and/or ATS plugins folder
 
 ## How to use
-Create a `template.txt` file with the desired content
-Example
+Create a `template.txt` file with the desired content<br/>
+Example:
 ```txt
 Truck: {truck.make.name} {truck.model.name}
 Speed: {truck.speed.kph} km/h
@@ -16,6 +16,23 @@ Cargo: {job.cargo.name}
 
 Run the executable with the specified template and output file.<br/>
 Example: `./trucksim-telemetry-to-txt.exe --template-path ./template.txt --output-path ./output.txt`
+
+### Formatting
+If wanting to format the values in a particular way you can do so by including javascript logic next to it<br/>
+Example
+```txt
+Fuel: {truck.fuel.value | value => Math.round(value)} Liters
+Trailer damage: {trailer.damage.total | value => Math.floor(value * 100)}%
+Remaining distance: {navigation.distance | value => Math.round(value).toLocaleString() + 'km'}
+Trailer attached: {trailer.attached | value => value === 'true' ? 'YES' : 'NO'}
+```
+Output
+```txt
+Fuel: 298 Liters
+Trailer damage: 14%
+Remaining distance: 78,959km
+Trailer attached: YES
+```
 
 ## Options
 `--template-path <path>`  Path to template<br/>
