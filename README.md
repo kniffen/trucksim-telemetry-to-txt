@@ -23,14 +23,14 @@ Example
 ```txt
 Fuel: {truck.fuel.value | value => Math.round(value)} Liters
 Trailer damage: {trailer.damage.total | value => Math.floor(value * 100)}%
-Remaining distance: {navigation.distance | value => Math.round(value).toLocaleString() + 'km'}
+Remaining distance: {navigation.distance | value => Math.round(value / 1000).toLocaleString() + 'km'}
 Trailer attached: {trailer.attached | value => value === 'true' ? 'YES' : 'NO'}
 ```
 Output
 ```txt
 Fuel: 298 Liters
 Trailer damage: 14%
-Remaining distance: 78,959km
+Remaining distance: 78km
 Trailer attached: YES
 ```
 
