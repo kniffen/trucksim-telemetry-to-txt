@@ -1,0 +1,21 @@
+{
+  "name": "trucksim-telemetry-to-txt",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node dist/main.js",
+    "dev": "tsx src/main.ts",
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "pkg": "^5.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "~5.7.2"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "trucksim-telemetry": "^0.21.0"
+  }
+}

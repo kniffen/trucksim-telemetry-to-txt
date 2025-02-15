@@ -1,0 +1,4 @@
+Truck: {truck.make.name} {truck.model.name}
+Speed: {truck.speed.kph} km/h
+Destination: {job.destination.city.name} {job.destination.company.name}
+Cargo: {job.cargo.name}
